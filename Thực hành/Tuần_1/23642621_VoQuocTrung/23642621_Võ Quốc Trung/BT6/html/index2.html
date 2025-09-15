@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>bai6.2</title>
+    <link rel="stylesheet" href="../css/bt2.css">
+</head>
+<body>
+  <div class="card">
+    <form>
+      <div class="row">
+        <label for="name">Name:</label>
+        <input id="name" type="text" required>
+      </div>
+
+      <div class="row">
+        <label for="tel">Telephone Number:</label>
+        <input id="tel" type="tel" placeholder="090-123-4567"
+               pattern="[\d\s\-\+()]{7,}" title="Nhập số điện thoại hợp lệ">
+      </div>
+
+      <div class="row">
+        <label for="email">Email:</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+      </div>
+
+      <div class="row">
+        <label for="color">Favorite Color:</label>
+        <input id="color" type="color" value="#0000ff">
+      </div>
+
+      <div class="row">
+        <label for="dob">Date of Birth:</label>
+        <!-- Trình duyệt sẽ hiện pop-up lịch như ảnh -->
+        <input id="dob" type="date">
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>    
+</body>
+</html>

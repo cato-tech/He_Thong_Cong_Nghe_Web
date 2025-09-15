@@ -1,0 +1,13 @@
+.Home{
+    margin-right: 20px;
+}
+.slide1{
+     width: 100px;   
+    height: 70px;  
+    object-fit: cover; 
+    margin: 2px; 
+}
+.slide2{
+    margin-right: 0;
+    margin-left: 0;
+}

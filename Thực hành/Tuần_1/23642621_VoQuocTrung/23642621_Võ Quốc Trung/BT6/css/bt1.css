@@ -1,0 +1,74 @@
+*{box-sizing:border-box}
+  body{
+    font-family: Georgia,"Times New Roman",serif;
+    margin:20px;
+  }
+  h1{
+    margin:0 0 8px;
+    font-size:40px;
+  }
+
+  /* khối fieldset viền xám giống hình */
+  fieldset{
+    border:2px solid #9b9b9b;
+    padding:10px 12px 12px;
+    margin-bottom:10px;
+  }
+  legend{
+    padding:0 6px;
+    font-weight:700;
+  }
+
+  /* lưới 2 cột: nhãn 140px + vùng nhập */
+.grid{
+    display:grid;
+    grid-template-columns: 140px 1fr;
+    gap:8px 10px;
+    align-items:start;
+}
+
+  label{display:block; margin-top:6px}
+  input[type="text"],
+  input[type="email"],
+  select,
+textarea{
+    width:320px;
+    max-width:100%;
+    padding:4px 6px;
+    border:1px solid #777;
+    border-radius:2px;
+    font-family:inherit;
+    font-size:16px;
+}
+textarea{
+    width:520px;            /* để lớn như ảnh */
+    height:160px;
+}
+
+  /* file input nằm cùng hàng với label */
+.file-row{
+    grid-column: 1 / span 2;
+    display:flex; gap:10px; align-items:center;
+}
+
+  /* hàng Newsletter (checkbox + mô tả) */
+.newsletter{
+    display:flex; align-items:center; gap:8px;
+}
+
+  /* hàng “How did you hear of us” */
+.fullrow{grid-column: 1 / span 2}
+.btn{
+    border:1px solid #777;
+    background:#e9e9e9;
+    padding:6px 10px;
+    border-radius:3px;
+    cursor:pointer;
+}
+.outer{
+  border: 1px solid #555;
+  padding: 10px;
+  max-width: 730px;
+  margin: 6px 0 0;     /* nằm ngay dưới tiêu đề */
+  background: #fff;    /* tùy chọn, cho viền nổi hơn */
+}

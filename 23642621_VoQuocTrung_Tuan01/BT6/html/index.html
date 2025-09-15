@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai6</title>
+    <link rel="stylesheet" href="../css/bt.css">
+</head>
+<body>
+<div class="page">
+    <div class="brand"><span class="feather">🪶</span> Jackson <span>Electronics</span></div>
+
+    <h1>Registration Form</h1>
+    <p class="sub">Register your Jackson Electronics product here</p>
+
+    <form>
+      <!-- First / Last name -->
+      <div class="row-4">
+        <label for="first">First Name:</label>
+        <input id="first" type="text" />
+        <label for="last">Last Name:</label>
+        <input id="last" type="text" />
+      </div>
+
+      <!-- Address lines -->
+      <div class="row-2">
+        <label for="addr1">Address #1:</label>
+        <input id="addr1" type="text" />
+      </div>
+      <div class="row-2">
+        <label for="addr2">Address #2:</label>
+        <input id="addr2" type="text" />
+      </div>
+
+      <!-- City / State / Zip -->
+      <div class="row-city">
+        <label for="city">City:</label>
+        <input id="city" type="text" />
+        <label for="state">State:</label>
+        <input id="state" type="text" />
+        <label for="zip">Zip:</label>
+        <input id="zip" type="text" />
+      </div>
+
+      <!-- Country -->
+      <div class="row-2">
+        <label for="country">Country:</label>
+        <select id="country">
+          <option>United States</option>
+          <option>Canada</option>
+          <option>United Kingdom</option>
+          <option>Australia</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <hr class="rule">
+
+      <!-- Product / Date / Serial -->
+      <div class="row-2">
+        <label for="product">Product:</label>
+        <select id="product">
+          <option>ScanMaster</option>
+          <option>PhotoJet</option>
+          <option>PrintMate</option>
+          <option>LaserPlus</option>
+        </select>
+      </div>
+
+      <div class="row-2">
+        <label for="date">Date Purchased:</label>
+        <input id="date" type="date" />
+      </div>
+
+      <div class="row-2">
+        <label for="serial">Serial #:</label>
+        <input id="serial" type="text" />
+      </div>
+
+      <!-- Used for (radio – 2 cột) -->
+      <div class="row-group">
+        <label>Used for:</label>
+        <div class="cols-2">
+          <label class="choice"><input type="radio" name="usedfor"> Home</label>
+          <label class="choice"><input type="radio" name="usedfor"> Educational Institution</label>
+          <label class="choice"><input type="radio" name="usedfor"> Business</label>
+          <label class="choice"><input type="radio" name="usedfor"> Other</label>
+          <label class="choice"><input type="radio" name="usedfor"> Government</label>
+        </div>
+      </div>
+
+      <!-- System (checkbox – 2 cột) -->
+      <div class="row-group">
+        <label>System (check all that apply):</label>
+        <div class="cols-2">
+          <label class="choice"><input type="checkbox"> Windows</label>
+          <label class="choice"><input type="checkbox"> UNIX</label>
+          <label class="choice"><input type="checkbox"> Macintosh</label>
+          <label class="choice"><input type="checkbox"> Other</label>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <!-- Comments -->
+      <div class="row-2">
+        <label for="cmt">Comments?</label>
+        <textarea id="cmt"></textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="actions">
+        <button type="submit" class="btn">Click to register</button>
+        <button type="reset" class="btn">Click to cancel</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

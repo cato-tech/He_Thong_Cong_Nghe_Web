@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bai6.1</title>
+    <link rel="stylesheet" href="../css/bt1.css">
+</head>
+<body>
+<h1>Contact Us</h1>
+
+<div class="outer">
+  <form>
+    <fieldset>
+      <legend>Your message:</legend>
+      <div class="grid">
+        <label for="to">To</label>
+        <input id="to" type="text" value="Example Cafe" />
+
+        <label for="email">Your email</label>
+        <input id="email" type="email" />
+
+        <label for="msg">Message</label>
+        <textarea id="msg"></textarea>
+
+        <div class="file-row">
+          <label for="file">Attach File</label>
+          <input id="file" type="file" />
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>How you found us:</legend>
+      <div class="grid">
+        <label for="source">How did you hear of us</label>
+        <select id="source">
+          <option>Google</option>
+          <option>Bing</option>
+          <option>Friend</option>
+          <option>Newspaper</option>
+          <option>Other</option>
+        </select>
+
+        <label>Newsletter</label>
+        <div class="newsletter">
+          <input id="news" type="checkbox" checked />
+          <label for="news">Ensure this box is checked if you would like to receive email updates</label>
+        </div>
+      </div>
+    </fieldset>
+
+    <button type="submit" class="btn">Send message</button>
+  </form>
+</div>
+</body>
+</html>

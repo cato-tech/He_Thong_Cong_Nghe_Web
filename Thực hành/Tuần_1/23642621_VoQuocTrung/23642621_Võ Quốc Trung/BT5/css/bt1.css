@@ -1,0 +1,47 @@
+.wrap{
+    max-width: 950px;
+    margin: 24px auto;
+    border: 1px solid #cfcfcf;
+    padding: 6px;
+}
+  /* Bảng lịch chiếu */
+table.schedule {
+    width: 100%;
+    border-collapse: separate;             /*  tách viền liền nhau */
+    table-layout: 2px;                   /* chia ô đều 2px*/
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+}
+  /* Tiêu đề bảng */
+.schedule caption {
+    caption-side: top;
+    font-size: 28px;
+    font-weight: 600;
+    margin: 8px 0 14px;
+}
+/* Viền & căn giữa */
+  .schedule th,
+  .schedule td {
+    border: 2px solid #555;
+    padding: 14px 16px;
+    vertical-align: middle;
+  }
+/* Ô giờ (hàng đầu) */
+  .schedule thead th {
+    text-align: center;
+    font-weight: 800;
+    font-style: italic;
+  }
+    /* Ô góc trên bên trái trống để canh giống hình */
+  .schedule thead th.blank {
+    background: #fff;
+    border: 2px solid #555;
+  }
+/* Cột “Screen …” bên trái */
+  .schedule tbody th {
+    text-align: left;
+    font-weight: 700;
+    width: 18%;
+    white-space: nowrap;
+  }
+  
