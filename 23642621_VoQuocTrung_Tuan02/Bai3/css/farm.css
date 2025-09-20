@@ -1,35 +1,5 @@
-body.is-index{
-    background-image: url("../img/background.jpg");
-    background-size: contain;
 
-    background-position: 85%;
-}
-#index-layout #header{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-}
-#index-layout #section{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0;
-    padding-bottom: 150px;
-}
-#index-layout .Siggie{
-    display: block;
-    margin: auto;
-    width: 790px; 
-    max-width: 95%;   
-}
-#index-layout .salogo{
-    display: block;
-    margin: auto;
-    width: 950px;
-    max-width: 95%;
-}
-#page-layout {
+/* #container {
     display: grid;
     grid-template-areas:
         "header  header"
@@ -65,4 +35,12 @@ body.is-index{
         grid-area: footer;
         background-color: yellow;
     }
+} */
+#links {
+    float:left;
+    width:200px;
+    background:#eef2f5;
+    border:1px solid #ccc;
+    padding:10px;
+    box-sizing:border-box;
 }

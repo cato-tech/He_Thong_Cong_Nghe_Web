@@ -1,92 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <title>Bai1</title>
-  </head>
-  <body>
-    <div class="container">
-      <header class="header"><h1 class="title">EXAMPLE CAFE MENU</h1></header>
-      <div class="nav">
-        <a href="" class="home"
-          ><img src="../img/icons8-home-50.png" alt="home"
-        /></a>
-        <ul class="menu">
-          <li><a href=".Starter">Starter</a></li>
-          <li><a href="">Main</a></li>
-          <li><a href="">Courses</a></li>
-          <li><a href="">Desserts</a></li>
-        </ul>
-
-        <div class="search">
-          <input type="text" placeholder="Search..." />
-          <button>Go</button>
-        </div>
-      </div>
-      <section class="section">
-        <div class="left">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <div id = "container">
+    <header class="header"><h1 class="title">EXAMPLE CAFE MENU</h1></header>
+    <nav id = "nav">
+      <a href="" class="home">
+        <img src="../img/icons8-home-50.png" alt="home">
+      </a>
+      <ul class="menu">
+        <li><a href="">Starter</a></li>
+        <li><a href="">Main Course</a></li>
+        <li><a href="">Desserts</a></li>
+      </ul>
+    <div class="search">
+      <input type="text" placeholder="Seach...">
+      <button>Go</button>
+    </div>
+    </nav>
+    <section id = "section">
+      <div class="left">
           <ul class="list">
-            <li>Giới thiệu</li>
-            <li>Dịch vụ</li>
-            <li>Liên hệ</li>
-            <li>Danh sách món ăn</li>
-            <li>Địa chỉ</li>
+              <li>Giới thiệu</li>
+              <li>Dịch vụ</li>
+              <li>Liên hệ</li>
+              <li>Danh sách món ăn</li>
+              <li>Địa chỉ</li>
           </ul>
-          <img src="../img/company.png" alt="" />
-        </div>
-        <div class="main">
+          <img src="../img/company.png" alt="">
+      </div>
+      <div class="main">
           <h1>Starter</h1>
           <ul>
-            <li>
-              Chesnut and Mushroom Goujons,<span style="color: red">(v)</span>
-            </li>
-            <li>Goat Cheese<span style="color: red">(v)</span></li>
-            <li>
-              <span style="color: rgb(216, 141, 12)"
-                >HONEY SOY CHICKEN KEBABS</span
-              ><span style="color: red">(v)</span>
-            </li>
-            <li>Scafood Salad<span style="color: red">(v)</span></li>
+            <li>Chesnut and Mushroom Goujons, <span class="veg">(v)</span></li>
+            <li>Goat Cheese <span class="veg">(v)</span></li>
+            <li><span style="color: rgb(216, 141, 12)">HONEY SOY CHICKEN KEBABS <span class="veg">(v)</span></li>
+            <li>Scafood Salad<span class="veg">(v)</span></li>
           </ul>
-          <a href="">Back to Top</a>
+          <a href=""><span style="color: red;">Back to top</span></a>
           <h1>Desserts</h1>
           <ul>
-            <li>Lemon Sorbet<span style="color: red">(v)</span></li>
-            <li>Chocolate Mud Pie<span style="color: red">(v)</span></li>
-            <li>Pecan Pie<span style="color: red">(v)</span></li>
-            <li>
-              Selection of line Cheeses from Around the World<span
-                style="color: red"
-                >(v)</span
-              >
-            </li>
+            <li>Lemon Sorbet<span class="veg">(v)</li>
+            <li>Chocolate Mud Pie<span class="veg">(v)</li>
+            <li>Pecan Pie<span class="veg">(v)</li>
+            <li>Selection of line Cheeses from Around the World<span class="veg">(v)</li>
           </ul>
-          <a href="">Back to Top</a>
+          <a href=""><span style="color: red;">Back to top</span></a>
           <h1>Information</h1>
           <form action="" class="form">
             <div class="row">
-              <input type="text" class="fn" placeholder="First name" />
-
-              <input type="text" class="ln" placeholder="Last name" />
-            </div>
-
-            <div class="row">
+              <input type="text" class="fn" placeholder="First name">
+              <input type="text" class="ln" placeholder="Last name">
               <input type="text" class="email" placeholder="Email" />
-
-              <input type="text" class="telephone" placeholder="Telephone" />
-            </div>
-            <div class="row">
-              <select name="" id="country">
+              <input type="text" class="telephone" placeholder="Telephone"/>
+              <select name="" class="country">
                 <option value="usa">USA</option>
-                <option value="vn">VN</option>
-                <option value="jp">Japan</option>
+                <option value="vn">VIET NAM</option>
+                <option value="jp">JAPAN</option>
               </select>
               <div class="radio">
-                <input type="radio" name="vn" />Vietnamese
-                <input type="radio" name="vn" />Forgeiner
-              </div>
+              <input type="radio" name="vn" />Vietnamese
+              <input type="radio" name="vn" />Forgeiner
+            </div>
             </div>
             <textarea name="comments" placeholder="Comment"></textarea>
             <div class="buttons">
@@ -94,14 +74,15 @@
               <button type="reset">Cancel</button>
             </div>
           </form>
-        </div>
-        <div class="right">
+          
+      </div>
+      <div class="right">
           <div class="events">
-            <div>Events</div>
+            <div class="title_events">Events</div>
             <div class="figures">
               <div class="box">
                 <h3>Regular Meetings</h3>
-                <img src="../img/meeting.png" alt="" />
+                <img src="../img/meeting.png" alt="">
                 <p>
                   Host your regular team meetings or activities in the comfort
                   of your own private room. Charge up on Kith's aromatic coffee
@@ -109,33 +90,23 @@
                 </p>
               </div>
               <div class="box">
-                <h3>Product Launches</h3>
-                <img src="../img/launch.png" alt="" />
-                <p>
-                  Launch your product with ease in a space that truly fits its
+                  <h3>Product Launches</h3>
+                  <img src="../img/launch.png" alt="">
+                  <p>
+                    Launch your product with ease in a space that truly fits its
                   image. Create an unforgettable experience for your guests with
                   our spacious outlets! Whether you want to host an intimate
                   celebration or launch an event for hundreds of guests, Kith's
                   space is customisable to your needs
-                </p>
-              </div>
-              <div class="box">
-                <h3>Company Dinner & Dance</h3>
-                <img src="../img/company.png" alt="" />
-                <p>
-                  Discover your ideal setting for a corporate dinner and dance
-                  here at Kith. Make your event a night to remember at our
-                  premium eatery where you can indulge in what we specialise in:
-                  Great food and great service
-                </p>
+                  </p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-      <footer class="footer">
+      </div>
+    </section>
+    <footer id="footer">
         ABC Company - 12345678 - abccdffee@gmail.com
-      </footer>
-    </div>
-  </body>
+    </footer>
+  </div>
+</body>
 </html>
