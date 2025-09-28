@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../asset/boostrap/css/bootstrap.min.css" />
+    <title>Bai3a</title>
+  </head>
+  <body>
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-primary"
+      data-bs-toggle="modal"
+      data-bs-target="#staticBackdrop"
+    >
+      Login
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="staticBackdrop"
+      data-bs-backdrop="static"
+      data-bs-keyboard="false"
+      tabindex="-1"
+      aria-labelledby="staticBackdropLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Login</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="mb-3">
+                <label for="" class="form-label">Email</label>
+                <input type="email" class="form-control" placeholder="Email" />
+              </div>
+              <div class="mb-3">
+                <label for="" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                />
+              </div>
+            </form>
+            <button type="button" class="btn btn-primary">Submit</button>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-danger"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const myModal = document.getElementById("myModal");
+      const myInput = document.getElementById("myInput");
+
+      myModal.addEventListener("shown.bs.modal", () => {
+        myInput.focus();
+      });
+    </script>
+    <script src="../asset/boostrap/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>

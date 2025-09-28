@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../asset/boostrap/css/bootstrap.min.css" />
+    <title>Bai2a</title>
+  </head>
+  <body>
+    <div class="container border border-1 border-primary w-50 p-4">
+      <div class="h-100">
+        <!-- table -->
+
+        <div>
+          <table class="table align-middle">
+            <thead>
+              <tr>
+                <th scope="col">Checkout</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- row1  -->
+              <tr class="">
+                <td>
+                  <div class="fw-bold">Product 1</div>
+                  <div class="text-muted small">Lorem ipsum dolor sit amet</div>
+                </td>
+                <td class="text-end">$200</td>
+              </tr>
+              <!-- row2 -->
+              <tr>
+                <td>
+                  <div class="fw-bold">Product 2</div>
+                  <div class="text-muted small">Lorem ipsum dolor sit amet</div>
+                </td>
+                <td class="text-end">$120</td>
+              </tr>
+              <!-- row total -->
+              <tr>
+                <td><div class="fw-bold">Total</div></td>
+                <td class="text-end">$320</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- form -->
+
+        <div>
+          <form action="" class="mt-5">
+            <h5>Credit Card Details</h5>
+            <!-- row1 -->
+            <div class="row">
+              <div class="col-7">
+                <label
+                  for="cardholder"
+                  class="form-label text-uppercase small my-3"
+                  >Card Holder</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Card Holder"
+                  id="cardholder"
+                />
+              </div>
+              <div class="col-5">
+                <label
+                  for="expiration"
+                  class="my-3 form-label text-uppercase small"
+                  >Expiration date</label
+                >
+                <div class="d-flex justify-content-center align-items-center">
+                  <input type="text" class="form-control" placeholder="MM" />
+                  <div class="mx-2">/</div>
+                  <input type="text" class="form-control" placeholder="YY" />
+                </div>
+              </div>
+            </div>
+            <!-- row2 -->
+            <div class="row mb-5">
+              <div class="col-8">
+                <label
+                  for="cardnum"
+                  class="my-3 form-label text-uppercase small"
+                  >Card number</label
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Card Holder"
+                  id="cardnum"
+                />
+              </div>
+              <div class="col-4">
+                <label for="cvc" class="my-3 form-label text-uppercase small"
+                  >cvc</label
+                >
+                <div class="d-flex justify-content-center align-items-center">
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="CVC"
+                    id="cvc"
+                  />
+                </div>
+              </div>
+            </div>
+            <!-- button -->
+            <div>
+              <button type="submit" class="btn btn-primary w-100 mt-3">
+                Proceed
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

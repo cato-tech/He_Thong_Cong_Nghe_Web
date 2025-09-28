@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Quiz Nhớ Câu Hỏi — Đơn giản</title>
+  <style>
+    :root {
+      --bg: #0f172a; /* slate-900 */
+      --panel: #111827; /* gray-900 */
+      --muted: #94a3b8; /* slate-400 */
+      --text: #e5e7eb; /* gray-200 */
+      --accent: #22c55e; /* green-500 */
+      --accent-2: #60a5fa; /* blue-400 */
+      --danger: #ef4444; /* red-500 */
+      --warning: #f59e0b; /* amber-500 */
+      --border: #1f2937; /* gray-800 */
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      background: radial-gradient(90vw 90vh at 10% 10%, #0b1220, var(--bg));
+      color: var(--text);
+    }
+    .wrap { max-width: 980px; margin: 24px auto; padding: 16px; }
+    .card { background: linear-gradient(180deg, #0b1020, var(--panel)); border: 1px solid var(--border); border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+    .header { padding: 18px 20px; border-bottom: 1px solid var(--border); display:flex; align-items:center; gap:12px; }
+    .logo { width: 36px; height: 36px; border-radius: 10px; background: conic-gradient(from 180deg at 50% 50%, var(--accent), var(--accent-2)); }
+    h1 { font-size: 20px; margin: 0; letter-spacing:.3px; }
+    .tabs { display: flex; gap: 8px; padding: 12px 12px 0; flex-wrap: wrap; }
+    .tab-btn { background: #0b1020; border: 1px solid var(--border); color: var(--text); padding: 8px 12px; border-radius: 10px; cursor: pointer; }
+    .tab-btn.active { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(34,197,94,.2) inset; }
+    .body { padding: 16px; display: grid; gap: 16px; }
+    .grid { display: grid; gap: 16px; grid-template-columns: 1fr; }
+    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .panel { border: 1px solid var(--border); border-radius: 14px; padding: 14px; background: #0a0f1c; }
+    .panel h2 { font-size: 16px; margin: 0 0 12px; color: #dbeafe; }
+    label { display:block; font-size: 12px; color: var(--muted); margin: 8px 0 6px; }
+    input[type="text"], textarea, select { width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--border); background: #0b1020; color: var(--text); }
+    textarea { min-height: 76px; resize: vertical; }
+    .row { display:flex; gap:10px; }
+    .row > * { flex:1; }
+    .btn { appearance: none; border: 1px solid var(--border); background: #0b1020; color: var(--text); padding: 10px 12px; border-radius: 10px; cursor: pointer; }
+    .btn.primary { border-color: var(--accent); background: linear-gradient(180deg, #0a1f12, #0d2a18); }
+    .btn.warn { border-color: var(--warning); }
+    .btn.danger { border-color: var(--danger); }
+    .btn:disabled { opacity: .55; cursor: not-allowed; }
+    .list { display: grid; gap: 10px; max-height: 420px; overflow: auto; padding-right: 4px; }
+    .q-item { border:1px solid var(--border); border-radius: 12px; padding:10px; background:#0b1020; display:grid; gap:6px; }
+    .q-title { font-weight: 600; }
+    .muted { color: var(--muted); font-size: 12px; }
+    .badge { display:inline-block; padding: 2px 8px; border-radius: 999px; border:1px solid var(--border); font-size: 11px; color:#c7f9cc; background:#07210f; }
+    .actions { display:flex; gap:8px; flex-wrap: wrap; }
+    .divider { height:1px; background: var(--border); margin: 6px 0; }
+
+    /* Quiz block */
+    .quiz { display: grid; gap: 12px; }
+    .quiz h3 { margin: 0; font-size: 18px; }
+    .choices { display:grid; gap:10px; }
+    .choice { padding: 12px; border-radius: 12px; border:1px solid var(--border); background:#0b1020; cursor:pointer; color:#ffffff; }
+    .choice * { color: inherit; }
+    .choice.correct { outline: 2px solid rgba(34,197,94,.5); }
+    .choice.wrong { outline: 2px solid rgba(239,68,68,.5); }
+    .status { display:flex; justify-content: space-between; align-items:center; gap:10px; }
+    .stat-pill { border:1px solid var(--border); border-radius: 10px; padding:6px 10px; font-size: 12px; }
+    .kbd { padding: 2px 6px; border:1px solid var(--border); border-bottom-width:2px; border-radius:6px; background:#0a0f1c; }
+    footer { text-align:center; color: var(--muted); font-size: 12px; padding: 18px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div class="header">
+        <div class="logo" aria-hidden="true"></div>
+        <h1>Quiz Nhớ Câu Hỏi — Đơn giản</h1>
+      </div>
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="manage">Quản lý câu hỏi</button>
+        <button class="tab-btn" data-tab="quiz">Làm trắc nghiệm</button>
+      </div>
+      <div class="body">
+        <!-- Manage Tab -->
+        <section id="tab-manage" class="tab">
+          <div class="grid">
+            <div class="panel">
+              <h2>Thêm / sửa câu hỏi</h2>
+              <input type="hidden" id="editIndex" value="" />
+              <label>Nội dung câu hỏi</label>
+              <textarea id="qText" placeholder="Ví dụ: Thủ đô của Pháp là gì?"></textarea>
+
+              <div class="row">
+                <div>
+                  <label>Phương án A</label>
+                  <input id="optA" type="text" placeholder="A" />
+                </div>
+                <div>
+                  <label>Phương án B</label>
+                  <input id="optB" type="text" placeholder="B" />
+                </div>
+              </div>
+              <div class="row">
+                <div>
+                  <label>Phương án C</label>
+                  <input id="optC" type="text" placeholder="C" />
+                </div>
+                <div>
+                  <label>Phương án D</label>
+                  <input id="optD" type="text" placeholder="D" />
+                </div>
+              </div>
+
+              <div class="row">
+                <div>
+                  <label>Đáp án đúng</label>
+                  <select id="correct">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                  </select>
+                </div>
+                <div>
+                  <label>Ghi chú (tuỳ chọn)</label>
+                  <input id="explain" type="text" placeholder="Lý do / giải thích ngắn" />
+                </div>
+              </div>
+
+              <div class="row" style="margin-top:10px">
+                <button id="saveBtn" class="btn primary">Lưu câu hỏi</button>
+                <button id="resetFormBtn" class="btn">Xoá form</button>
+              </div>
+            </div>
+
+            <div class="panel">
+              <h2>Danh sách câu hỏi đã lưu <span id="countBadge" class="badge">0</span></h2>
+              <div class="row">
+                <input id="search" type="text" placeholder="Tìm theo nội dung hoặc đáp án..." />
+                <button id="exportBtn" class="btn">Xuất JSON</button>
+                <label for="importFile" class="btn" style="display:flex; align-items:center; justify-content:center; cursor:pointer;">Nhập JSON</label>
+                <input id="importFile" type="file" accept="application/json" style="display:none" />
+              </div>
+              <div class="list" id="questionList"></div>
+              <div class="row">
+                <button id="clearAllBtn" class="btn danger">Xoá tất cả</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quiz Tab -->
+        <section id="tab-quiz" class="tab" style="display:none">
+          <div class="panel">
+            <h2>Thiết lập</h2>
+            <div class="row">
+              <div>
+                <label>Số câu trong bài (ngẫu nhiên)</label>
+                <input id="quizCount" type="number" min="1" step="1" placeholder="vd: 10" />
+              </div>
+              <div>
+                <label>Chế độ</label>
+                <select id="quizMode">
+                  <option value="instant">Hiện đúng/sai ngay</option>
+                  <option value="exam">Thi kết thúc mới chấm</option>
+                </select>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <button id="startQuizBtn" class="btn primary">Bắt đầu</button>
+              <button id="stopQuizBtn" class="btn warn" disabled>Kết thúc</button>
+            </div>
+          </div>
+
+          <div class="panel quiz" id="quizPanel" style="display:none">
+            <div class="status">
+              <div class="stat-pill">Câu <span id="qIdx">1</span>/<span id="qTotal">1</span></div>
+              <div class="stat-pill">Điểm: <span id="score">0</span></div>
+            </div>
+            <div class="divider"></div>
+
+            <h3 id="quizQuestion">Nội dung câu hỏi</h3>
+            <div class="choices" id="choices"></div>
+            <div class="muted" id="explainBox" style="display:none"></div>
+            <div class="row" style="margin-top:8px">
+              <button id="nextBtn" class="btn">Câu tiếp theo ➜ <span class="kbd">N</span></button>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer>🔒 Dữ liệu lưu cục bộ bằng <strong>localStorage</strong> trên trình duyệt của bạn — không cần máy chủ.</footer>
+    </div>
+  </div>
+
+  <script>
+    // ====== Storage helpers ======
+    const KEY = 'mcqQuestions.v1';
+    const load = () => JSON.parse(localStorage.getItem(KEY) || '[]');
+    const save = (arr) => localStorage.setItem(KEY, JSON.stringify(arr));
+
+    // ====== State ======
+    let questions = load();
+    let filtered = [...questions];
+
+    // Quiz state
+    let quizList = [];
+    let quizIdx = 0;
+    let quizScore = 0;
+    let quizMode = 'instant';
+    let quizAnswers = []; // for exam mode
+
+    // ====== DOM ======
+    const $ = (sel) => document.querySelector(sel);
+    const $$ = (sel) => [...document.querySelectorAll(sel)];
+
+    const els = {
+      tabBtns: $$('.tab-btn'),
+      tabManage: $('#tab-manage'),
+      tabQuiz: $('#tab-quiz'),
+      countBadge: $('#countBadge'),
+      list: $('#questionList'),
+      search: $('#search'),
+      exportBtn: $('#exportBtn'),
+      importFile: $('#importFile'),
+      clearAllBtn: $('#clearAllBtn'),
+
+      // form
+      editIndex: $('#editIndex'), qText: $('#qText'), optA: $('#optA'), optB: $('#optB'), optC: $('#optC'), optD: $('#optD'), correct: $('#correct'), explain: $('#explain'),
+      saveBtn: $('#saveBtn'), resetFormBtn: $('#resetFormBtn'),
+
+      // quiz setup
+      quizCount: $('#quizCount'), quizMode: $('#quizMode'), startQuizBtn: $('#startQuizBtn'), stopQuizBtn: $('#stopQuizBtn'),
+
+      // quiz runtime
+      quizPanel: $('#quizPanel'), qIdx: $('#qIdx'), qTotal: $('#qTotal'), score: $('#score'), quizQuestion: $('#quizQuestion'), choices: $('#choices'), explainBox: $('#explainBox'), nextBtn: $('#nextBtn'),
+    };
+
+    // ====== Utils ======
+    const uid = () => Math.random().toString(36).slice(2, 8);
+    const clamp = (n, mi, ma) => Math.max(mi, Math.min(ma, n));
+    const shuffle = (arr) => arr.map(v => [Math.random(), v]).sort((a,b)=>a[0]-b[0]).map(v=>v[1]);
+
+    const toItem = ({id, text, A, B, C, D, correct, explain}) => ({ id: id || uid(), text: (text||'').trim(), A:(A||'').trim(), B:(B||'').trim(), C:(C||'').trim(), D:(D||'').trim(), correct: (correct||'A').toUpperCase(), explain: (explain||'').trim() });
+
+    // ====== Render List ======
+    function renderList(list = filtered) {
+      els.countBadge.textContent = list.length;
+      els.list.innerHTML = '';
+      if (!list.length) {
+        els.list.innerHTML = `<div class="muted">Chưa có câu hỏi nào. Hãy thêm ở panel bên trái.</div>`;
+        return;
+      }
+      list.forEach((q, idx) => {
+        const div = document.createElement('div');
+        div.className = 'q-item';
+        div.innerHTML = `
+          <div class="q-title">${escapeHtml(q.text)}</div>
+          <div class="muted">A. ${escapeHtml(q.A)} &nbsp;•&nbsp; B. ${escapeHtml(q.B)} &nbsp;•&nbsp; C. ${escapeHtml(q.C)} &nbsp;•&nbsp; D. ${escapeHtml(q.D)}</div>
+          <div class="muted">Đáp án đúng: <strong>${q.correct}</strong> ${q.explain ? `&nbsp;—&nbsp;<em>${escapeHtml(q.explain)}</em>` : ''}</div>
+          <div class="actions">
+            <button class="btn" data-act="edit" data-id="${q.id}">Sửa</button>
+            <button class="btn danger" data-act="del" data-id="${q.id}">Xoá</button>
+          </div>
+        `;
+        els.list.appendChild(div);
+      });
+    }
+
+    function escapeHtml(s){
+      return (s||'').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','\'':'&#39;'}[c]));
+    }
+
+    // ====== Form handlers ======
+    function readForm() {
+      return toItem({
+        id: els.editIndex.value || undefined,
+        text: els.qText.value,
+        A: els.optA.value, B: els.optB.value, C: els.optC.value, D: els.optD.value,
+        correct: els.correct.value, explain: els.explain.value
+      });
+    }
+
+    function fillForm(q) {
+      els.editIndex.value = q.id || '';
+      els.qText.value = q.text || '';
+      els.optA.value = q.A || '';
+      els.optB.value = q.B || '';
+      els.optC.value = q.C || '';
+      els.optD.value = q.D || '';
+      els.correct.value = (q.correct || 'A').toUpperCase();
+      els.explain.value = q.explain || '';
+    }
+
+    function clearForm() {
+      fillForm({id:'', text:'', A:'',B:'',C:'',D:'', correct:'A', explain:''});
+    }
+
+    function upsertQuestion(item) {
+      // validate minimal
+      if (!item.text || !item.A || !item.B) { alert('Cần tối thiểu: nội dung, A, B.'); return; }
+      const existIdx = questions.findIndex(q => q.id === item.id);
+      if (existIdx >= 0) {
+        questions[existIdx] = item;
+      } else {
+        questions.push(item);
+      }
+      save(questions); filtered = [...questions]; renderList(); clearForm();
+    }
+
+    // ====== List click (edit/delete) ======
+    els.list.addEventListener('click', (e) => {
+      const btn = e.target.closest('button'); if (!btn) return;
+      const id = btn.getAttribute('data-id');
+      const act = btn.getAttribute('data-act');
+      const q = questions.find(x => x.id === id);
+      if (!q) return;
+      if (act === 'edit') fillForm(q);
+      if (act === 'del') {
+        if (confirm('Xoá câu hỏi này?')) {
+          questions = questions.filter(x => x.id !== id);
+          save(questions); filtered = [...questions]; renderList();
+        }
+      }
+    });
+
+    // ====== Search ======
+    els.search.addEventListener('input', () => {
+      const t = els.search.value.toLowerCase();
+      filtered = questions.filter(q => {
+        const all = [q.text, q.A, q.B, q.C, q.D, q.correct, q.explain].join(' ').toLowerCase();
+        return all.includes(t);
+      });
+      renderList();
+    });
+
+    // ====== Export / Import ======
+    els.exportBtn.addEventListener('click', () => {
+      const blob = new Blob([JSON.stringify(questions, null, 2)], {type: 'application/json'});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'mcq_questions.json';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    });
+
+    els.importFile.addEventListener('change', async () => {
+      const file = els.importFile.files[0]; if (!file) return;
+      try {
+        const text = await file.text();
+        const arr = JSON.parse(text);
+        if (!Array.isArray(arr)) throw new Error('JSON không đúng định dạng mảng');
+        // Normalize and merge new IDs if missing
+        const normalized = arr.map(toItem);
+        // Merge (by id if same, otherwise append)
+        const map = new Map(questions.map(q => [q.id, q]));
+        normalized.forEach(n => map.set(n.id, n));
+        questions = [...map.values()];
+        save(questions); filtered = [...questions]; renderList();
+        alert('Nhập thành công!');
+      } catch (err) { alert('Lỗi nhập: ' + err.message); }
+      finally { els.importFile.value = ''; }
+    });
+
+    // ====== Clear all ======
+    els.clearAllBtn.addEventListener('click', () => {
+      if (!questions.length) return;
+      if (confirm('Xoá toàn bộ câu hỏi đã lưu?')) {
+        questions = []; save(questions); filtered = []; renderList();
+      }
+    });
+
+    // ====== Save / Reset form ======
+    els.saveBtn.addEventListener('click', () => upsertQuestion(readForm()));
+    els.resetFormBtn.addEventListener('click', clearForm);
+
+    // ====== Tabs ======
+    els.tabBtns.forEach(btn => btn.addEventListener('click', () => {
+      els.tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const tab = btn.dataset.tab;
+      els.tabManage.style.display = tab === 'manage' ? '' : 'none';
+      els.tabQuiz.style.display = tab === 'quiz' ? '' : 'none';
+    }));
+
+    // ====== Quiz Logic ======
+    function startQuiz() {
+      if (!questions.length) { alert('Chưa có câu hỏi!'); return; }
+      const want = parseInt(els.quizCount.value || '0', 10);
+      const n = clamp(isNaN(want) ? questions.length : want, 1, questions.length);
+      quizList = shuffle([...questions]).slice(0, n);
+      quizIdx = 0; quizScore = 0; quizAnswers = [];
+      quizMode = els.quizMode.value;
+
+      els.qTotal.textContent = quizList.length;
+      els.score.textContent = quizScore;
+      els.quizPanel.style.display = '';
+      els.stopQuizBtn.disabled = false;
+      renderQuizQuestion();
+    }
+
+    function stopQuiz(final=false) {
+      if (!quizList.length) return;
+      if (quizMode === 'exam' && !final) {
+        if (!confirm('Kết thúc và chấm điểm?')) return;
+      }
+      let msg = '';
+      if (quizMode === 'exam') {
+        const total = quizList.length;
+        quizScore = quizAnswers.reduce((acc, a, i) => acc + (a === (quizList[i].correct||'A')), 0);
+        msg = `\nKết quả: ${quizScore}/${total}`;
+        els.score.textContent = quizScore;
+      }
+      alert('Đã kết thúc bài làm.' + msg);
+      quizList = []; quizAnswers = []; quizIdx = 0; els.quizPanel.style.display = 'none'; els.stopQuizBtn.disabled = true;
+    }
+
+    function renderQuizQuestion() {
+      const q = quizList[quizIdx];
+      els.qIdx.textContent = quizIdx + 1;
+      els.quizQuestion.textContent = q.text;
+      els.choices.innerHTML = '';
+      els.explainBox.style.display = 'none';
+
+      const order = ['A','B','C','D'];
+      order.forEach(letter => {
+        const val = q[letter];
+        if (!val) return; // hỗ trợ câu có 2-3 phương án
+        const btn = document.createElement('button');
+        btn.className = 'choice';
+        btn.innerHTML = `<strong>${letter}.</strong> ${escapeHtml(val)}`;
+        btn.addEventListener('click', () => selectAnswer(letter));
+        els.choices.appendChild(btn);
+      });
+    }
+
+    function selectAnswer(letter) {
+      const q = quizList[quizIdx];
+      if (quizMode === 'instant') {
+        // mark UI
+        $$('#choices .choice').forEach((el, i) => {
+          const L = ['A','B','C','D'][i];
+          if (L === (q.correct||'A')) el.classList.add('correct');
+          if (L === letter && letter !== (q.correct||'A')) el.classList.add('wrong');
+          el.disabled = true;
+        });
+        if (letter === (q.correct||'A')) { quizScore++; els.score.textContent = quizScore; }
+        if (q.explain) { els.explainBox.style.display = ''; els.explainBox.textContent = 'Giải thích: ' + q.explain; }
+      } else {
+        quizAnswers[quizIdx] = letter; // store
+      }
+    }
+
+    function nextQuestion() {
+      if (!quizList.length) return;
+      if (quizIdx < quizList.length - 1) {
+        quizIdx++;
+        renderQuizQuestion();
+      } else {
+        if (quizMode === 'instant') {
+          alert(`Hết câu hỏi!\nĐiểm: ${quizScore}/${quizList.length}`);
+          quizList = []; quizIdx = 0; els.quizPanel.style.display = 'none'; els.stopQuizBtn.disabled = true;
+        } else {
+          stopQuiz(true);
+        }
+      }
+    }
+
+    // Keyboard: N for next
+    document.addEventListener('keydown', (e) => {
+      if (e.key.toLowerCase() === 'n') nextQuestion();
+    });
+
+    els.startQuizBtn.addEventListener('click', startQuiz);
+    els.stopQuizBtn.addEventListener('click', () => stopQuiz(false));
+    els.nextBtn.addEventListener('click', nextQuestion);
+
+    // Init
+    renderList();
+
+    // Prefill demo data (first-time only)
+    if (!questions.length) {
+      const demo = [
+        {text:'Thủ đô của Pháp là gì?', A:'Paris', B:'Lyon', C:'Marseille', D:'Nice', correct:'A', explain:'Paris là thủ đô và thành phố lớn nhất nước Pháp.'},
+        {text:'2 + 2 = ?', A:'3', B:'4', C:'5', D:'22', correct:'B', explain:'Phép cộng cơ bản.'},
+        {text:'Ngôn ngữ dùng để tạo cấu trúc trang web?', A:'HTML', B:'CSS', C:'Photoshop', D:'Python', correct:'A'}
+      ].map(toItem);
+      questions = demo; save(questions); filtered = [...questions]; renderList();
+    }
+  </script>
+</body>
+</html>
