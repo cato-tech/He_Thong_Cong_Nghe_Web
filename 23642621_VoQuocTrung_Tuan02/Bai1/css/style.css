@@ -1,192 +1,299 @@
-/* Container */
-#container{
-  border: 1px solid rgb(221, 59, 59);
-  width: 80%;
-  height: auto;
-  margin: 10px auto;
-}
-/*Header*/
-.header{
-  border-bottom: 1px solid;
-}
-.title{
-  color: rgb(221, 59, 59);
-  font-style: italic;
-  text-shadow: 8px 10px 1px rgb(236, 200, 200);
-  text-align: center;
-}
-/* Navigation */
-#nav {
-  position: relative;
-  border-bottom: 1px solid;
-  background-color: pink;
-  height: 50px;
+    /* Container */
+    
+    * {
+        box-sizing: border-box;
+    }
+    
+    body {
+        border: 1px solid black;
+        width: auto;
+        height: auto;
+        padding: 10px 8px 8px;
+    }
+    
+    #container {
+        border: 1px solid rgb(221, 59, 59);
+        width: 80%;
+        height: auto;
+        margin: 10px auto;
+    }
+    /*Header*/
+    
+    .header {
+        border-bottom: 1px solid;
+    }
+    
+    .title {
+        color: rgb(221, 59, 59);
+        font-style: italic;
+        text-shadow: 8px 10px 1px rgb(236, 200, 200);
+        text-align: center;
+    }
+    /* Navigation */
+    /* #nav {
+    display: flex;
+    border-bottom: 1px solid;
+    background-color: pink;
+    height: 50px;
 }
 
 #nav .home {
-  position: absolute;
-  left: 180px;
-  border-right: 1px solid black;
-  padding: 12px 5px;
-}
-#nav .home img{
-  height: 20px;
-  width: 20px;
-}
-.menu{
-  position: absolute;
-  list-style-type: none;
-  margin: 0;
-  left: 200px;
-  top: 16px;
-}
-.menu li{
-  text-transform: uppercase;
-  display: inline;
-  margin-right: 20px;
-}
-.menu li a{
-  text-decoration: none;
-  color: white;
-  padding: 16px 20px;
-  border-right: 1px solid black;
-  font-weight: bold;  /* Chữ in đậm */
-}
-#nav .menu li a:hover{
-  color: blue;
-  transition: 1ms;
-}
-.search{
-  position: absolute;
-  left: 880px;
-  top: 20px;
-}
-/*Section*/
-#section {
-  display: flex;
-  width: 100%;
+    display: flex;
+    left: 180px;
+    border-right: 1px solid black;
+    padding: 12px 5px;
 }
 
-#section .left {
-  flex: 1;  /* ~10% */
-  background: white;
+#nav .home img {
+    height: 20px;
+    width: 20px;
 }
 
-#section .main {
-  flex: 7;  /* ~70% */
-  background: white;
+.menu {
+    display: flex;
+    list-style-type: none;
+    margin: 0;
+    left: 200px;
+    top: 16px;
 }
 
-#section .right {
-  flex: 2;  /* ~20% */
-  background: white;
-}
-/*left*/
-#section .left .list{
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  width: 300px;                 /* tùy ý, để các viên đều nhau */
-}
-#section .left .list li{
-  background: #f3a4ad;          /* hồng */
-  color: #fff;
-  margin: 4px 0;
-  padding: 10px 16px;           /* tạo độ dày cho viên */
-  border-radius: 9999px;        /* quan trọng: bo tròn hoàn toàn */
-  font-weight: 600;
-  text-align: left;             /* hoặc center nếu bạn thích */
-  box-shadow: 0 4px 10px rgba(243,164,173,0.35); /* bóng mềm */
-  border: 1px solid rgba(0,0,0,0.08);            /* viền rất nhẹ */
-  transition: transform .15s ease, background .2s ease;
-}
-#section .left .list li:hover{
-  transform: translateY(-1px);  /* nhích lên nhẹ khi hover */
-  background: #ef8f9a;          /* hồng đậm hơn chút */
-}
-#section .left img{
-  width: 300px;
-  height: auto;
-  object-fit: cover;
-  border-radius: 50%;
-  box-shadow: 8px 15px 15px pink;
-}
-/*main*/
- #section h1{
-  color: rgb(221,59,59);
-  text-align: left;
-  background:#f3a4ad;
-  letter-spacing: 30px;
-  margin: 5px auto 12px;
-  width: 70%;
-}
-/* (v) đỏ + gạch chân (chỉ riêng (v)) */
-.veg{
-  color: red;
-  text-decoration: underline;
-}
-/* ===== Form layout ===== */
-.main .form{
-  width: 1000px;
-  margin: 0 auto;
+.menu li {
+    text-transform: uppercase;
+    display: inline;
+    margin-right: 20px;
 }
 
-#section .row{
-  display: flex;
-  flex-wrap: wrap;    
-  gap: 16px 20px;     
-}
-#section input[type="text"],
-#section input[type="email"],
-#section input[type="tel"],
-#section select,
-#section textarea {
-  width: 40%;
-  height: 36px;
-  padding: 6px 10px;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  outline: none;
+.menu li a {
+    text-decoration: none;
+    color: white;
+    padding: 16px 20px;
+    border-right: 1px solid black;
+    font-weight: bold; */
+    /* Chữ in đậm */
+    /* }
+
+#nav .menu li a:hover {
+    color: blue;
+    transition: 1ms;
 }
 
-#section textarea {
-  margin-top: 10px;
-  width: 820px;
-  height: 50px;
-}
-/*Right*/
-#section .right .events{
-  background-color: black;
-  width: 100%;
-  height: auto;
-  color: white;
-  margin: 5px auto;
-}
-.title_events{
-  font-size: 85px;
-  font-weight: bold;
-}
-.right .box {
-  width: 80%;
-  height: auto;
-  margin: auto auto;
-}
-.box img {
-  height: auto;
-  width: 100%;
-  margin: 0 0;
-  object-fit: cover;
-}
-.box h3 {
-  margin: 0 0;
-}
-/*Footer*/
-#footer{
-  display: flex;
-  color: white;
-  align-items: center;
-  background-color: #ef8f9a;
-  font-weight: bold;
-  justify-content: center;
-  height: 50px;
-}
+.search {
+    display: flex;
+    left: 880px;
+    top: 20px;
+} */
+    
+    #nav {
+        display: flex;
+        align-items: center;
+        /* căn dọc giữa */
+        border-bottom: 1px solid;
+        background-color: pink;
+        height: 50px;
+        padding-left: 180px;
+        /* thay cho left: 180px ở .home */
+        gap: 20px;
+        /* khoảng cách các phần tử */
+    }
+    
+    #nav .home {
+        display: flex;
+        border-right: 1px solid black;
+        padding: 12px 5px;
+    }
+    
+    #nav .home img {
+        height: 20px;
+        width: 20px;
+    }
+    
+    .menu {
+        display: flex;
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        /* left: 200px; top: 16px;  bỏ vì flex tự căn chỉnh */
+    }
+    
+    .menu li {
+        text-transform: uppercase;
+        /* display: inline;  không cần vì flex đã căn hàng ngang */
+        margin-right: 20px;
+    }
+    
+    .menu li a {
+        text-decoration: none;
+        color: white;
+        padding: 16px 20px;
+        border-right: 1px solid black;
+        font-weight: bold;
+    }
+    
+    #nav .menu li a:hover {
+        color: blue;
+        transition: color 0.3s ease;
+    }
+    
+    .search {
+        display: flex;
+        margin-left: auto;
+        /* đẩy search sang phải */
+        /* left: 880px; top: 20px; bỏ đi vì không có position */
+        align-items: center;
+    }
+    /*Section*/
+    
+    #section {
+        display: flex;
+        width: 100%;
+    }
+    
+    #section .left {
+        flex: 1;
+        /* ~10% */
+        background: white;
+    }
+    
+    #section .main {
+        flex: 7;
+        /* ~70% */
+        background: white;
+    }
+    
+    #section .right {
+        flex: 2;
+        /* ~20% */
+        background: white;
+    }
+    /*left*/
+    
+    #section .left .list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        width: 300px;
+        /* tùy ý, để các viên đều nhau */
+    }
+    
+    #section .left .list li {
+        background: #f3a4ad;
+        /* hồng */
+        color: #fff;
+        margin: 4px 0;
+        padding: 10px 16px;
+        /* tạo độ dày cho viên */
+        border-radius: 9999px;
+        /* quan trọng: bo tròn hoàn toàn */
+        font-weight: 600;
+        text-align: left;
+        /* hoặc center nếu bạn thích */
+        box-shadow: 0 4px 10px rgba(243, 164, 173, 0.35);
+        /* bóng mềm */
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        /* viền rất nhẹ */
+        transition: transform .15s ease, background .2s ease;
+    }
+    
+    #section .left .list li:hover {
+        transform: translateY(-1px);
+        /* nhích lên nhẹ khi hover */
+        background: #ef8f9a;
+        /* hồng đậm hơn chút */
+    }
+    
+    #section .left img {
+        width: 300px;
+        height: auto;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 8px 15px 15px pink;
+    }
+    /*main*/
+    
+    #section h1 {
+        color: rgb(221, 59, 59);
+        text-align: left;
+        background: #f3a4ad;
+        letter-spacing: 30px;
+        margin: 5px auto 12px;
+        width: 70%;
+    }
+    /* (v) đỏ + gạch chân (chỉ riêng (v)) */
+    
+    .veg {
+        color: red;
+        text-decoration: underline;
+    }
+    /* ===== Form layout ===== */
+    
+    .main .form {
+        width: 1000px;
+        margin: 0 auto;
+    }
+    
+    #section .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px 20px;
+    }
+    
+    #section input[type="text"],
+    #section input[type="email"],
+    #section input[type="tel"],
+    #section select,
+    #section textarea {
+        width: 40%;
+        height: 36px;
+        padding: 6px 10px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+        outline: none;
+    }
+    
+    #section textarea {
+        margin-top: 10px;
+        width: 820px;
+        height: 50px;
+    }
+    /*Right*/
+    
+    #section .right .events {
+        background-color: black;
+        width: 100%;
+        height: auto;
+        color: white;
+        margin: 5px auto;
+    }
+    
+    .title_events {
+        font-size: 85px;
+        font-weight: bold;
+    }
+    
+    .right .box {
+        width: 80%;
+        height: auto;
+        margin: auto auto;
+    }
+    
+    .box img {
+        height: auto;
+        width: 100%;
+        margin: 0 0;
+        object-fit: cover;
+    }
+    
+    .box h3 {
+        margin: 0 0;
+    }
+    /*Footer*/
+    
+    #footer {
+        display: flex;
+        color: white;
+        align-items: center;
+        background-color: #ef8f9a;
+        font-weight: bold;
+        justify-content: center;
+        height: 50px;
+    }
